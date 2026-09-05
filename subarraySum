@@ -1,0 +1,19 @@
+class Solution(object):
+    def subarraySum(self, nums, k):
+        count = 0
+        prefix_sum = 0
+        sums = {0: 1}
+        
+        for num in nums:
+            prefix_sum += num
+            
+            if prefix_sum - k in sums:
+                count += sums[prefix_sum - k]
+                
+            if prefix_sum in sums:
+                sums[prefix_sum] += 1
+            else:
+                sums[prefix_sum] = 1
+        
+        return count
+        
